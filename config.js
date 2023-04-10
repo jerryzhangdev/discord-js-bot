@@ -52,7 +52,7 @@ module.exports = {
 
   MUSIC: {
     ENABLED: true,
-    IDLE_TIME: 60, // Time in seconds before the bot disconnects from an idle voice channel
+    IDLE_TIME: 6000000000000000000000, // Time in seconds before the bot disconnects from an idle voice channel
     MAX_SEARCH_RESULTS: 5,
     DEFAULT_SOURCE: "YT", // YT = Youtube, YTM = Youtube Music, SC = SoundCloud
     // Add any number of lavalink nodes here
