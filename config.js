@@ -37,8 +37,8 @@ module.exports = {
 
   DASHBOARD: {
     enabled: true, // enable or disable dashboard
-    baseURL: "https://dashboard.swiftcraft.net", // base url
-    failureURL: "https://dashboard.swiftcraft.net", // failure redirect url
+    baseURL: "http://localhost", // base url
+    failureURL: "http://localhost", // failure redirect url
     port: "80", // port to run the bot on
   },
 
