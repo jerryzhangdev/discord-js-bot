@@ -2,8 +2,8 @@ module.exports = {
   OWNER_IDS: ["539195184357965833"], // Bot owner ID's
   SUPPORT_SERVER: "", // Your bot support server
   PREFIX_COMMANDS: {
-    ENABLED: false, // Enable/Disable prefix commands
-    DEFAULT_PREFIX: "!", // Default prefix for the bot
+    ENABLED: true, // Enable/Disable prefix commands
+    DEFAULT_PREFIX: "-", // Default prefix for the bot
   },
   INTERACTIONS: {
     SLASH: true, // Should the interactions be enabled
