@@ -77,7 +77,8 @@ module.exports = {
     const settings = data.settings;
 
     if(settings["events"] == undefined) {
-      settings["events"] = []
+      data.settings["events"] = []
+      await data.settings.save()
     }
 
     let response;
