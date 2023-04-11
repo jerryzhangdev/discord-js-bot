@@ -83,9 +83,9 @@ module.exports = {
     let response;
 
     if(sub == "create") {
-      response = createEvent(interaction, settings);
+      response = await createEvent(interaction, settings);
     } else if(sub == "remove") {
-      response = removeEvent(interaction, settings);
+      response = await removeEvent(interaction, settings);
     } else if(sub == "participants") {
       console.log("participants")
       response = "participants"
