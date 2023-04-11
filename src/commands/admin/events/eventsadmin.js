@@ -4,8 +4,8 @@ const { ApplicationCommandOptionType } = require("discord.js");
  * @type {import("@structures/Command")}
  */
 module.exports = {
-  name: "createevents",
-  description: "Create upcoming events for the current server",
+  name: "eventsadmin",
+  description: "Events actions for the current server",
   category: "EVENTS",
   userPermissions: ["ManageGuild"],
   command: {
