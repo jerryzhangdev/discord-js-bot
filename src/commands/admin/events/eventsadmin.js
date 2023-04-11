@@ -161,11 +161,13 @@ async function getParticipants(interaction, settings) {
   let participants = [];
   for(var i = 0; i < events.length; i++) {
     if(events[i].name == interaction.options.getString("name")) {
-      participants.push(events[i].participants.tag)
+      if(events[i].participants.length > 0){
+        participants.push(events[i].participants.tag)
+      }
     }
   }
 
   console.log(participants)
 
-  return `The Registered Participants is: ${participants.length > 0 ? "No Participants" : participants.join(", ")}`
+  return `The Registered Participants is: ${participants.length == 0 ? "No Participants" : participants.join(", ")}`
 }
