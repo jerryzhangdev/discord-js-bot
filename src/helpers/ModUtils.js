@@ -148,7 +148,8 @@ module.exports = class ModUtils {
     switch (action) {
       case "MUTE":
         return ModUtils.timeoutTarget(issuer, target, DEFAULT_TIMEOUT_DAYS * 24 * 60, reason);
-
+      case "TIMEOUT":
+        return ModUtils.timeoutTarget(issuer, target, DEFAULT_TIMEOUT_DAYS * 24 * 60, reason);
       case "KICK":
         return ModUtils.kickTarget(issuer, target, reason);
 
