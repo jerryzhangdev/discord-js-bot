@@ -56,6 +56,14 @@ const Schema = new mongoose.Schema({
       },
     ],
   },
+  events: [
+    {
+      name: String,
+      starttime: Number,
+      openslots: Number,
+      participants: [String],
+    }
+  ],
   flag_translation: {
     enabled: Boolean,
   },
