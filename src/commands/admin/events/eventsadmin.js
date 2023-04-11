@@ -39,7 +39,7 @@ module.exports = {
             name: "openslots",
             description: "How many slots are available for this event?",
             required: true,
-            type: ApplicationCommandOptionType.String
+            type: ApplicationCommandOptionType.Integer
           },
         ],
       },
