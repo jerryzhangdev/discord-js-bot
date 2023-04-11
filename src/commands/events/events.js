@@ -80,8 +80,7 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle("Upcoming Events")
         .setColor(EMBED_COLORS.BOT_EMBED)
-        .setDescription("Here are the upcoming events for this server!")
-        .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
+        .setDescription("Here are the upcoming events for this server!");
 
       events.forEach(event => {
         embed.addField({ name: event.name, value: `Starts at: <t:${event.starttime}:t>\nSlots Left: ${event.openslots - event.participants.length}` })
