@@ -105,15 +105,15 @@ async function handleAction(name, action, interaction,  settings) {
           return "This event is full!"
         }
         for(let j = 0; j < participants.length; j++){
-          if(participants[j].id == interaction.user.id){
+          if(participants[j] == interaction.user.id){
             return "You are already registered for this event!"
           }
         }
-        console.log(interaction.user)
-        event[i]["participants"].push(interaction.user)
+        event[i]["participants"].push(interaction.user.id)
 
       }
     }
-    console.log(event + " " + settings.events)
+    await settings.save()
+    return "You have been registered for this event!"
   }
 }
