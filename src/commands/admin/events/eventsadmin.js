@@ -87,8 +87,7 @@ module.exports = {
     } else if(sub == "remove") {
       response = await removeEvent(interaction, settings);
     } else if(sub == "participants") {
-      console.log("participants")
-      response = "participants"
+      response = await getParticipants(interaction, settings);
     }
     console.log(settings["events"])
     await interaction.followUp(response);
@@ -137,4 +136,16 @@ async function removeEvent(interaction, settings) {
   settings["events"] = temp;
 
   return "Event removed!";
+}
+
+async function getParticipants(interaction, settings) {
+  let events = settings["events"];
+  let participants = [];
+  for(var i = 0; i < events.length; i++) {
+    if(events[i].name == interaction.options.getString("name")) {
+      participants.push(events[i].participants.tag)
+    }
+  }
+
+  return `The Registered Participants is: ${participants.length == 0 ? "No Participants" : participants.join(", ")}`
 }
