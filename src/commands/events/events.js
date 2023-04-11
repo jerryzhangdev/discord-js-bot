@@ -42,6 +42,12 @@ module.exports = {
         type: ApplicationCommandOptionType.Subcommand,
         options: [
           {
+            name: "name",
+            description: "Name of the event(case sensitive)",
+            required: true,
+            type: ApplicationCommandOptionType.String
+          },
+          {
             name: "action",
             description: "True to register, false to unregister",
             required: true,
@@ -80,7 +86,6 @@ module.exports = {
     }else if(sub == "actions"){
       let name = interaction.options.getString("name")
       let action = interaction.options.getBoolean("action")
-      console.log(action)
       let response = await handleAction(name, action, interaction, data.settings);
       await interaction.followUp(response);
     }
