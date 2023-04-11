@@ -42,20 +42,10 @@ module.exports = {
         type: ApplicationCommandOptionType.Subcommand,
         options: [
           {
-            name: "status",
-            description: "configuration status",
+            name: "action",
+            description: "True to register, false to unregister",
             required: true,
-            type: ApplicationCommandOptionType.String,
-            choices: [
-              {
-                name: "REGISTER",
-                value: "REGISTER",
-              },
-              {
-                name: "UNREGISTER",
-                value: "UNREGISTER",
-              },
-            ],
+            type: ApplicationCommandOptionType.Boolean
           },
         ],
       },
@@ -87,7 +77,36 @@ module.exports = {
       })
 
       return interaction.followUp({ embeds: [embed] })
+    }else if(sub == "action"){
+      let name = interaction.options.getString("name")
+      let action = interaction.options.getBoolean("action")
+      let response = await handleAction(name, action, interaction, data.settings);
+      await interaction.followUp(response);
     }
 
   },
 };
+
+async function handleAction(name, action, interaction,  settings) {
+  let event = settings["events"];
+  if(action == true){
+    // loops through events
+    for(let i = 0; i < event.length; i++){
+      // checks if event name matches
+      if(event[i]["name"] == name){
+        let participants = event[i]["participants"]
+        if(event[i]["participants"].length >= event[i]["openslots"]){
+          return "This event is full!"
+        }
+        for(let j = 0; j < participants.length; j++){
+          if(participants[j].id == interaction.user.id){
+            return "You are already registered for this event!"
+          }
+        }
+        event[i]["participants"].push({ id: interaction.user.id, name: interaction.user.username })
+
+      }
+    }
+    console.log(event + " " + settings.events)
+  }
+}
