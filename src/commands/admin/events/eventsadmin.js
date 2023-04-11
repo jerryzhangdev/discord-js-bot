@@ -31,7 +31,7 @@ module.exports = {
           },
           {
             name: "starttime",
-            description: "When does the event start, in UTC Timestamp?",
+            description: "When does the event start, in UTC(EPOCH) Timestamp(in seconds)?",
             required: true,
             type: ApplicationCommandOptionType.Integer
           },
@@ -112,9 +112,9 @@ async function createEvent(interaction, settings) {
   }catch(e){
     return "Invalid time!";
   }
-  console.log(interaction.options.getInteger("starttime") + "|" + Date.now())
+  console.log(interaction.options.getInteger("starttime")*1000 + "|" + Date.now())
 
-  if(interaction.options.getInteger("starttime") < Date.now()) {
+  if(interaction.options.getInteger("starttime")*1000 < Date.now()) {
     return "Start time must be in the future!";
   }
 

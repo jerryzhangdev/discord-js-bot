@@ -10,7 +10,7 @@ async function handleEvent(client) {
       let events = settings["events"];
       let temp = [];
       for(var j = 0; j < events.length; j++) {
-        if((events[j].starttime + (0*60*1000)) <= Date.now()){
+        if(((events[j].starttime * 1000) + (0*60*1000)) >= Date.now()){
           temp.push(events[j]);
         }
       }
