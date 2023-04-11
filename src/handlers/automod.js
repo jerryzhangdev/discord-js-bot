@@ -204,7 +204,7 @@ async function performAutomod(message, settings) {
       memberDb.strikes = 0;
 
       // Add Moderation Action
-      await addModAction(guild.members.me, member, "Automod: Max strikes received", automod.action).catch(() => {});
+      await addModAction(guild.members.me, member, "Automod: Max strikes received", automod.action.toUpperCase()).catch(() => {});
     }
 
     await memberDb.save();
