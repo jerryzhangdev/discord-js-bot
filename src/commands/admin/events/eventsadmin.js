@@ -104,6 +104,11 @@ async function createEvent(interaction, settings) {
       return "Event already exists!";
     }
   }
+  try{
+    new Date(interaction.options.getInteger("starttime"));
+  }catch(e){
+    return "Invalid time!";
+  }
 
   temp.push({
     name: interaction.options.getString("name"),

@@ -1,4 +1,5 @@
-const { ApplicationCommandOptionType } = require("discord.js");
+const { ApplicationCommandOptionType, MessageEmbed } = require("discord.js");
+const { EMBED_COLORS } = require("@root/config.js");
 
 /**
  * @type {import("@structures/Command")}
@@ -65,42 +66,29 @@ module.exports = {
     const sub = interaction.options.getSubcommand();
     const settings = data.settings;
 
-    let response;
-    if (sub == "ghostping") response = await antiGhostPing(settings, interaction.options.getString("status"));
-    else if (sub == "spam") response = await antiSpam(settings, interaction.options.getString("status"));
-    else if (sub === "massmention") {
-      response = await antiMassMention(
-        settings,
-        interaction.options.getString("status"),
-        interaction.options.getInteger("amount")
-      );
-    } else response = "Invalid command usage!";
+    if(settings["events"] == undefined) {
+      data.settings["events"] = []
+      await data.settings.save()
+    }
 
-    await interaction.followUp(response);
+    if(sub == "upcoming") {
+      const events = data.settings["events"]
+      if(events.length == 0) {
+        return interaction.reply({ content: "There are no upcoming events!", ephemeral: true })
+      }
+
+      const embed = new MessageEmbed()
+        .setTitle("Upcoming Events")
+        .setColor(EMBED_COLORS.BOT_EMBED)
+        .setDescription("Here are the upcoming events for this server!")
+        .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
+
+      events.forEach(event => {
+        embed.addField(event.name, `Starts at: <t:${event.starttime}:t>\nSlots Left: ${event.openslots - event.participants.length}`)
+      })
+
+      return interaction.reply({ embeds: [embed] })
+    }
+
   },
 };
-
-async function antiGhostPing(settings, input) {
-  const status = input.toUpperCase() === "ON" ? true : false;
-  settings.automod.anti_ghostping = status;
-  await settings.save();
-  return `Configuration saved! Anti-Ghostping is now ${status ? "enabled" : "disabled"}`;
-}
-
-async function antiSpam(settings, input) {
-  const status = input.toUpperCase() === "ON" ? true : false;
-  settings.automod.anti_spam = status;
-  await settings.save();
-  return `Antispam detection is now ${status ? "enabled" : "disabled"}`;
-}
-
-async function antiMassMention(settings, input, threshold) {
-  const status = input.toUpperCase() === "ON" ? true : false;
-  if (!status) {
-    settings.automod.anti_massmention = 0;
-  } else {
-    settings.automod.anti_massmention = threshold;
-  }
-  await settings.save();
-  return `Mass mention detection is now ${status ? "enabled" : "disabled"}`;
-}
