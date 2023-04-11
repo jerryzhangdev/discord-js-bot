@@ -144,7 +144,7 @@ module.exports = class ModUtils {
    * @param {"MUTE"|"KICK"|"SOFTBAN"|"BAN"} action
    */
   static async addModAction(issuer, target, reason, action) {
-    console.log("performing automod action")
+    console.log("performing automod action: " + action);
     switch (action) {
       case "MUTE":
         return ModUtils.timeoutTarget(issuer, target, DEFAULT_TIMEOUT_DAYS * 24 * 60, reason);
