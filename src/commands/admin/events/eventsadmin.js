@@ -162,7 +162,9 @@ async function getParticipants(interaction, settings) {
   for(var i = 0; i < events.length; i++) {
     if(events[i].name == interaction.options.getString("name")) {
       if(events[i].participants.length > 0){
-        participants.push(events[i].participants.tag)
+        for(var j = 0; j < events[i].participants.length; j++) {
+          participants.push(interaction.client.users.cache.get(events[i].participants[j]).tag)
+        }
       }
     }
   }
