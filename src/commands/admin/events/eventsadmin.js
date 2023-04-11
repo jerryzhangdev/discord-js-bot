@@ -74,23 +74,67 @@ module.exports = {
 
   async interactionRun(interaction, data) {
     const sub = interaction.options.getSubcommand();
-    // const settings = data.settings;
+    const settings = data.settings;
+
+    if(settings["events"] == undefined) {
+      settings["events"] = []
+    }
 
     let response;
 
     if(sub == "create") {
-      console.log("create")
-      response = "create"
+      response = createEvent(interaction, settings);
     } else if(sub == "remove") {
-      console.log("remove")
-      response = "remove"
+      response = removeEvent(interaction, settings);
     } else if(sub == "participants") {
       console.log("participants")
       response = "participants"
     }
-
+    console.log(settings["events"])
     await interaction.followUp(response);
   },
 };
 
 
+async function createEvent(interaction, settings) {
+  let events = settings["events"];
+  let temp = events;
+  for(var i = 0; i < events.length; i++) {
+    if(events[i].name == interaction.options.getString("name")) {
+      return "Event already exists!";
+    }
+  }
+
+  temp.push({
+    name: interaction.options.getString("name"),
+    starttime: interaction.options.getInteger("starttime"),
+    openslots: interaction.options.getInteger("openslots"),
+    participants: []
+  })
+
+  settings["events"] = temp;
+
+  return "Event created!";
+
+}
+
+async function removeEvent(interaction, settings) {
+  let events = settings["events"];
+  let temp = [];
+  let exists = false;
+  for(var i = 0; i < events.length; i++) {
+    if(events[i].name != interaction.options.getString("name")) {
+      temp.push(events[i])
+    }else{
+      exists = true;
+    }
+  }
+
+  if(exists == false) {
+    return "Event does not exist!";
+  }
+
+  settings["events"] = temp;
+
+  return "Event removed!";
+}
