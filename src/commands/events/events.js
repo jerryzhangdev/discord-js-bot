@@ -77,7 +77,7 @@ module.exports = {
       })
 
       return interaction.followUp({ embeds: [embed] })
-    }else if(sub == "action"){
+    }else if(sub == "actions"){
       let name = interaction.options.getString("name")
       let action = interaction.options.getBoolean("action")
       console.log(action)
