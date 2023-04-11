@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { CACHE_SIZE, PREFIX_COMMANDS, STATS } = require("@root/config.js");
 const FixedSizeMap = require("fixedsize-map");
 const { getUser } = require("./User");
+const { User } = require("discord.js");
 
 const cache = new FixedSizeMap(CACHE_SIZE.GUILDS);
 
@@ -61,7 +62,7 @@ const Schema = new mongoose.Schema({
       name: String,
       starttime: Number,
       openslots: Number,
-      participants: [Object],
+      participants: [User],
     }
   ],
   flag_translation: {
