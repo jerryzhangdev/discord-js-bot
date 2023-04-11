@@ -84,7 +84,7 @@ module.exports = {
         .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
 
       events.forEach(event => {
-        embed.addField(event.name, `Starts at: <t:${event.starttime}:t>\nSlots Left: ${event.openslots - event.participants.length}`)
+        embed.addField({ name: event.name, value: `Starts at: <t:${event.starttime}:t>\nSlots Left: ${event.openslots - event.participants.length}` })
       })
 
       return interaction.reply({ embeds: [embed] })
