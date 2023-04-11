@@ -98,6 +98,9 @@ module.exports = {
 
 async function createEvent(interaction, settings) {
   let events = settings["events"];
+  if(events.length > 10){
+    return "You can only have 10 events at a time!";
+  }
   let temp = events;
   for(var i = 0; i < events.length; i++) {
     if(events[i].name == interaction.options.getString("name")) {
@@ -108,6 +111,14 @@ async function createEvent(interaction, settings) {
     new Date(interaction.options.getInteger("starttime"));
   }catch(e){
     return "Invalid time!";
+  }
+
+  if(interaction.options.getInteger("starttime") < Date.now()) {
+    return "Start time must be in the future!";
+  }
+
+  if(interaction.options.getInteger("openslots") < 0) {
+    return "Invalid number of slots!";
   }
 
   temp.push({
