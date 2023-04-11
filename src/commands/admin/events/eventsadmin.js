@@ -112,6 +112,7 @@ async function createEvent(interaction, settings) {
   }catch(e){
     return "Invalid time!";
   }
+  console.log(interaction.options.getInteger("starttime") + "|" + Date.now())
 
   if(interaction.options.getInteger("starttime") < Date.now()) {
     return "Start time must be in the future!";
