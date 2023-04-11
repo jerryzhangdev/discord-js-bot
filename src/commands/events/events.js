@@ -109,7 +109,7 @@ async function handleAction(name, action, interaction,  settings) {
             return "You are already registered for this event!"
           }
         }
-        event[i]["participants"].push({ id: interaction.user.id, name: interaction.user.username })
+        event[i]["participants"].push(interaction.user)
 
       }
     }
