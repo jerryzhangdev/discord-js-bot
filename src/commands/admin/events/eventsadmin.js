@@ -165,5 +165,7 @@ async function getParticipants(interaction, settings) {
     }
   }
 
+  console.log(participants)
+
   return `The Registered Participants is: ${participants.length > 0 ? "No Participants" : participants.join(", ")}`
 }
