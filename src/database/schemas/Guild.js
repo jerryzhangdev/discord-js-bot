@@ -61,7 +61,7 @@ const Schema = new mongoose.Schema({
       name: String,
       starttime: Number,
       openslots: Number,
-      participants: [String],
+      participants: [Object],
     }
   ],
   flag_translation: {
