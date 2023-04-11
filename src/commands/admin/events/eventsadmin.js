@@ -83,11 +83,11 @@ module.exports = {
     let response;
 
     if(sub == "create") {
-      response = await createEvent(interaction, settings);
+      response = await createEvent(interaction, data.settings);
     } else if(sub == "remove") {
-      response = await removeEvent(interaction, settings);
+      response = await removeEvent(interaction, data.settings);
     } else if(sub == "participants") {
-      response = await getParticipants(interaction, settings);
+      response = await getParticipants(interaction, data.settings);
     }
     console.log(settings["events"])
     await interaction.followUp(response);
