@@ -1,4 +1,4 @@
-const { counterHandler, inviteHandler, presenceHandler, eventHandler } = require("@src/handlers");
+const { counterHandler, inviteHandler, presenceHandler, eventsHandler } = require("@src/handlers");
 const { cacheReactionRoles } = require("@schemas/ReactionRoles");
 const { getSettings } = require("@schemas/Guild");
 
@@ -50,6 +50,6 @@ module.exports = async (client) => {
 
   setInterval(() => counterHandler.updateCounterChannels(client), 10 * 60 * 1000);
 
-  eventHandler.handleEvent(client)
+  eventsHandler.handleEvent(client)
   // setInterval(() => console.log("hi"), 10 * 1000);
 };
