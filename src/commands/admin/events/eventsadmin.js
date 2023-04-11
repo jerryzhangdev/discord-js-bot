@@ -25,7 +25,7 @@ module.exports = {
         options: [
           {
             name: "name",
-            description: "The Name of the Event",
+            description: "The Name of the Event(case sensitive)",
             required: true,
             type: ApplicationCommandOptionType.String
           },
@@ -50,7 +50,7 @@ module.exports = {
         options: [
           {
             name: "name",
-            description: "The name of the event",
+            description: "The name of the event(case sensitive)",
             required: true,
             type: ApplicationCommandOptionType.String,
           }
@@ -63,7 +63,7 @@ module.exports = {
         options: [
           {
             name: "name",
-            description: "The name of the event",
+            description: "The name of the event(case sensitive)",
             required: true,
             type: ApplicationCommandOptionType.String,
           }
@@ -90,7 +90,6 @@ module.exports = {
     } else if(sub == "participants") {
       response = await getParticipants(interaction, data.settings);
     }
-    console.log(settings["events"])
     await interaction.followUp(response);
   },
 };
@@ -112,7 +111,6 @@ async function createEvent(interaction, settings) {
   }catch(e){
     return "Invalid time!";
   }
-  console.log(interaction.options.getInteger("starttime")*1000 + "|" + Date.now())
 
   if(interaction.options.getInteger("starttime")*1000 < Date.now()) {
     return "Start time must be in the future!";
