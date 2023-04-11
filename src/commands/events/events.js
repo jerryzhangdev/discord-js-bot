@@ -86,7 +86,7 @@ module.exports = {
         embed.addFields({ name: event.name, value: `Starts at: <t:${event.starttime}:t>\nSlots Left: ${event.openslots - event.participants.length}` })
       })
 
-      return interaction.reply({ embeds: [embed] })
+      return interaction.followUp({ embeds: [embed] })
     }
 
   },
