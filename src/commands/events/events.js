@@ -74,7 +74,7 @@ module.exports = {
     if(sub == "upcoming") {
       const events = data.settings["events"]
       if(events.length == 0) {
-        return interaction.reply({ content: "There are no upcoming events!", ephemeral: true })
+        return interaction.followUp({ content: "There are no upcoming events!", ephemeral: true })
       }
 
       const embed = new EmbedBuilder()
