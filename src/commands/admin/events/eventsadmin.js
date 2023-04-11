@@ -112,6 +112,7 @@ async function createEvent(interaction, settings) {
   })
 
   settings["events"] = temp;
+  await settings.save();
 
   return "Event created!";
 
@@ -134,6 +135,7 @@ async function removeEvent(interaction, settings) {
   }
 
   settings["events"] = temp;
+  await settings.save();
 
   return "Event removed!";
 }
