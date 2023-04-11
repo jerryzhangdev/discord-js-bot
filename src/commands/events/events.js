@@ -83,7 +83,7 @@ module.exports = {
         .setDescription("Here are the upcoming events for this server!");
 
       events.forEach(event => {
-        embed.addFields({ name: event.name, value: `Starts at: <t:${event.starttime}:t>\nSlots Left: ${event.openslots - event.participants.length}` })
+        embed.addFields({ name: event.name, value: `Starts at: <t:${event.starttime}>\nSlots Left: ${event.openslots - event.participants.length}` })
       })
 
       return interaction.followUp({ embeds: [embed] })
