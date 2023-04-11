@@ -80,6 +80,7 @@ module.exports = {
     }else if(sub == "action"){
       let name = interaction.options.getString("name")
       let action = interaction.options.getBoolean("action")
+      console.log(action)
       let response = await handleAction(name, action, interaction, data.settings);
       await interaction.followUp(response);
     }
