@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType, MessageEmbed } = require("discord.js");
+const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
 const { EMBED_COLORS } = require("@root/config.js");
 
 /**
@@ -77,7 +77,7 @@ module.exports = {
         return interaction.reply({ content: "There are no upcoming events!", ephemeral: true })
       }
 
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         .setTitle("Upcoming Events")
         .setColor(EMBED_COLORS.BOT_EMBED)
         .setDescription("Here are the upcoming events for this server!")
