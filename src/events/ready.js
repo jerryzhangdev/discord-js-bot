@@ -50,6 +50,6 @@ module.exports = async (client) => {
 
   setInterval(() => counterHandler.updateCounterChannels(client), 10 * 60 * 1000);
 
-  eventsHandler.handleEvent(client)
-  // setInterval(() => console.log("hi"), 10 * 1000);
+  
+  setInterval(() => eventsHandler.handleEvent(client), 30 * 1000);
 };
