@@ -1,4 +1,5 @@
-const { ApplicationCommandOptionType } = require("discord.js");
+const { ApplicationCommandOptionType, EmbedBuilder } = require("discord.js");
+const { EMBED_COLORS } = require("@root/config.js");
 
 /**
  * @type {import("@structures/Command")}
@@ -190,8 +191,6 @@ async function getParticipants(interaction, settings) {
     }
   }
 
-  console.log(participants)
-
   return `The Registered Participants is: ${participants.length == 0 ? "No Participants" : participants.join(", ")}`
 }
 
@@ -214,7 +213,11 @@ async function contactParticipants(interaction, settings) {
 
   for(var k = 0; k < participants.length; k++) {
     try{
-      participants[k].send(interaction.options.getString("message"))
+      let dm = new EmbedBuilder()
+      .setTitle("Event Contact")
+      .setDescription(interaction.options.getString("message"))
+      .setColor(EMBED_COLORS.BOT_EMBED)
+      participants[k].send({ embeds: [dm] })
     }catch(e){
       // do nothing
     }
