@@ -218,7 +218,7 @@ async function contactParticipants(interaction, settings) {
       .setDescription(interaction.options.getString("message"))
       .setColor(EMBED_COLORS.BOT_EMBED)
       .setTimestamp()
-      .setFooter("If the event organizer is spamming you, please contact the bot owner.")
+      .setFooter({ text: "If the event organizer is spamming you, please contact the bot owner." })
       participants[k].send({ embeds: [dm] })
     }catch(e){
       // do nothing
