@@ -222,7 +222,6 @@ async function contactParticipants(interaction, settings) {
       participants[k].send({ embeds: [dm] })
     }catch(e){
       // do nothing
-      console.error(e)
     }
   }
 
