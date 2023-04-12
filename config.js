@@ -6,7 +6,7 @@ module.exports = {
     DEFAULT_PREFIX: "-", // Default prefix for the bot
   },
   INTERACTIONS: {
-    SLASH: true, // Should the interactions be enabled
+    SLASH: false, // Should the interactions be enabled
     CONTEXT: true, // Should contexts be enabled
     GLOBAL: true, // Should the interactions be registered globally
     TEST_GUILD_ID: "1095515374449070100", // Guild ID where the interactions should be registered. [** Test you commands here first **]
