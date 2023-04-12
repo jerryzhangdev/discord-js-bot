@@ -120,11 +120,13 @@ async function handleAction(name, action, interaction,  settings) {
       .setColor(EMBED_COLORS.BOT_EMBED)
       .setDescription(`You have been registered for the event: ${name}! \n\n\nDepending on the event, you may receive dms from the organizer prior to the event, which may include instructions for joining the event.\n\nIf you can receive this message, you can receive dms from the event organizer. Please change your privacy settings if you do not want to receive dms from the organizer.`)
       
-    interaction.user.send({ embeds: [embed] }).then(() => {
-      return "You have been registered for this event!"
-    }).catch(() => {
-      return "You have been registered for this event, but I was unable to send you a confirmation dm, please change your privacy settings to allow dms from server members."
-    })
+  
+    try{
+      await interaction.user.send({ embeds: [embed] })
+      return "You have now been registered for this event!"
+    }catch(e){
+      return "You have been registered for this event, but you have dms disabled. Please enable dms from server members to receive instructions from the event organizer."
+    }
   }else{
     for(let i = 0; i < event.length; i++){
       if(event[i]["name"] == name){
