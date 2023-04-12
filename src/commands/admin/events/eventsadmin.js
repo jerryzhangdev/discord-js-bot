@@ -83,7 +83,7 @@ module.exports = {
           },
           {
             name: "message",
-            description: "Messasge to send to the participants",
+            description: "Messasge to send to the participants. Note that spamming this command will result in a ban from the bot.",
             required: true,
             type: ApplicationCommandOptionType.String,
           }
@@ -217,6 +217,8 @@ async function contactParticipants(interaction, settings) {
       .setTitle("Event Organizer for the event " + interaction.options.getString("name") + " in " + interaction.guild.name + " has sent you a message!")
       .setDescription(interaction.options.getString("message"))
       .setColor(EMBED_COLORS.BOT_EMBED)
+      .setTimestamp()
+      .setFooter("If the event organizer is spamming you, please contact the bot owner.")
       participants[k].send({ embeds: [dm] })
     }catch(e){
       // do nothing
