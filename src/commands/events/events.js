@@ -114,6 +114,15 @@ async function handleAction(name, action, interaction,  settings) {
       }
     }
     await settings.save()
+
+    let embed = new EmbedBuilder()
+      .setTitle("Event Registration Confirmation")
+      .setColor(EMBED_COLORS.BOT_EMBED)
+      .setDescription(`You have been registered for the event: ${name}! \n\nDepending on the event organizer, you may receive dms prior to the event, which may include instructions for joining the event.\nIf you can receive this message, this means that you can receive dms from the event organizer, please change your privacy settings if you do not want to receive dms from the organizer.`)
+      
+    interaction.user.send({ embeds: [embed] }).catch(() => {
+      return "You have been registered for this event, but I was unable to send you a confirmation dm, please change your privacy settings to allow dms from server members."
+    })
     return "You have been registered for this event!"
   }else{
     for(let i = 0; i < event.length; i++){
