@@ -69,6 +69,25 @@ module.exports = {
           }
         ],
       },
+      {
+        name: "contact",
+        description: "Use this to contact participants that signed up for an event",
+        type: ApplicationCommandOptionType.Subcommand,
+        options: [
+          {
+            name: "name",
+            description: "The name of the event(case sensitive)",
+            required: true,
+            type: ApplicationCommandOptionType.String,
+          },
+          {
+            name: "message",
+            description: "Messasge to send to the participants",
+            required: true,
+            type: ApplicationCommandOptionType.String,
+          }
+        ],
+      },
     ],
   },
 
@@ -89,6 +108,8 @@ module.exports = {
       response = await removeEvent(interaction, data.settings);
     } else if(sub == "participants") {
       response = await getParticipants(interaction, data.settings);
+    } else if(sub == "contact") {
+      response = await contactParticipants(interaction, data.settings);
     }
     await interaction.followUp(response);
   },
@@ -172,4 +193,28 @@ async function getParticipants(interaction, settings) {
   console.log(participants)
 
   return `The Registered Participants is: ${participants.length == 0 ? "No Participants" : participants.join(", ")}`
+}
+
+async function contactParticipants(interaction, settings) {
+  let events = settings["events"];
+  let participants = [];
+  for(var i = 0; i < events.length; i++) {
+    if(events[i].name == interaction.options.getString("name")) {
+      if(events[i].participants.length > 0){
+        for(var j = 0; j < events[i].participants.length; j++) {
+          participants.push(interaction.client.users.cache.get(events[i].participants[j]))
+        }
+      }
+    }
+  }
+
+  if(participants.length == 0) {
+    return "No participants to contact!";
+  }
+
+  for(var k = 0; k < participants.length; k++) {
+    participants[k].send(interaction.options.getString("message"))
+  }
+
+  return "Participants contacted!";
 }
