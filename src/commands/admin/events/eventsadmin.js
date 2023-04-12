@@ -213,7 +213,11 @@ async function contactParticipants(interaction, settings) {
   }
 
   for(var k = 0; k < participants.length; k++) {
-    participants[k].send(interaction.options.getString("message"))
+    try{
+      participants[k].send(interaction.options.getString("message"))
+    }catch(e){
+      // do nothing
+    }
   }
 
   return "Participants contacted!";
