@@ -83,7 +83,7 @@ module.exports = {
           },
           {
             name: "message",
-            description: "Messasge to send to the participants. Note that spamming this command will result in a ban from the bot.",
+            description: "Messasge to send to the participants.",
             required: true,
             type: ApplicationCommandOptionType.String,
           }
@@ -225,5 +225,5 @@ async function contactParticipants(interaction, settings) {
     }
   }
 
-  return "Participants contacted!";
+  return "Participants contacted! Note that if the participants have DMs disabled, they will not receive the message.";
 }
