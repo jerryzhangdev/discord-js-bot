@@ -125,7 +125,7 @@ async function handleAction(name, action, interaction,  settings) {
       await interaction.user.send({ embeds: [embed] })
       return "You have now been registered for this event!"
     }catch(e){
-      return "You have been registered for this event, but you have dms disabled. \n\nPlease allow me to dm you(check your server privacy settings) as the event organizers may provide instructions to join the event through your dms."
+      return "You have been registered for this event, but you have dms disabled. \n\nPlease allow me to dm you(check your server privacy settings) as I will be sending you possible instructions for joining the event."
     }
   }else{
     for(let i = 0; i < event.length; i++){
