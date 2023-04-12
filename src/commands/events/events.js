@@ -115,5 +115,19 @@ async function handleAction(name, action, interaction,  settings) {
     }
     await settings.save()
     return "You have been registered for this event!"
+  }else{
+    for(let i = 0; i < event.length; i++){
+      if(event[i]["name"] == name){
+        let temp = [];
+        for(let j = 0; j < event[i]["participants"].length; j++){
+          if(event[i]["participants"][j] != interaction.user.id){
+            temp.push(event[i]["participants"][j])
+          }
+        }
+        event[i]["participants"] = temp;
+      }
+    }
+    await settings.save()
+    return "You have now been unregistered for this event!"
   }
 }
