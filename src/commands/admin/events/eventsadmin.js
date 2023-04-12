@@ -214,7 +214,7 @@ async function contactParticipants(interaction, settings) {
   for(var k = 0; k < participants.length; k++) {
     try{
       let dm = new EmbedBuilder()
-      .setTitle("Event Organizer for the event " + interaction.options.getString("name") + " in " + interaction.guild.name + " has sent you a message!")
+      .setTitle("Message for " + interaction.options.getString("name") + " in " + interaction.guild.name + "!")
       .setDescription(interaction.options.getString("message"))
       .setColor(EMBED_COLORS.BOT_EMBED)
       .setTimestamp()
